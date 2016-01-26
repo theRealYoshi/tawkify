@@ -64,7 +64,7 @@ class Navbar extends React.Component {
         <div className='navbar-container'>
           <div className='navbar-header'>
             <Link to="/">
-              <span>Picture Here</span>
+              <img src="/img/Tawkify_White_Logo.png" className="tawkify-logo"></img>
             </Link>
           </div>
           <div id='navbar' className='navbar-collapse collapse'>
@@ -75,8 +75,10 @@ class Navbar extends React.Component {
               <li><Link to='/signin'>Sign in</Link></li>
             </ul>
             <ul className='nav navbar-nav navbar-right'>
-              <li><Link to='/phone'>1(888)494-7280</Link></li>
-              <li><Link to='/screening'>Click here for free screening</Link></li>
+              <li><Link to='/phone' className='screening-text'>1(888)494-7280</Link></li>
+                <Link to='/screening'>
+                  <img src="/img/screening-logo.png" className="screening-logo"></img>
+                </Link>
             </ul>
           </div>
         </div>

@@ -507,11 +507,7 @@ var Navbar = (function (_React$Component) {
             _react2.default.createElement(
               _reactRouter.Link,
               { to: '/' },
-              _react2.default.createElement(
-                'span',
-                null,
-                'Picture Here'
-              )
+              _react2.default.createElement('img', { src: '/img/Tawkify_White_Logo.png', className: 'tawkify-logo' })
             )
           ),
           _react2.default.createElement(
@@ -565,18 +561,14 @@ var Navbar = (function (_React$Component) {
                 null,
                 _react2.default.createElement(
                   _reactRouter.Link,
-                  { to: '/phone' },
+                  { to: '/phone', className: 'screening-text' },
                   '1(888)494-7280'
                 )
               ),
               _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                  _reactRouter.Link,
-                  { to: '/screening' },
-                  'Click here for free screening'
-                )
+                _reactRouter.Link,
+                { to: '/screening' },
+                _react2.default.createElement('img', { src: '/img/screening-logo.png', className: 'screening-logo' })
               )
             )
           )
