@@ -33,26 +33,21 @@ class Home extends React.Component {
   }
 
   render() {
-    var profileImgs = this.state.profileImgs.map((imgSrc, idx) => {
-      return (
-        <div className='col-xs-6 .col-md-4 flipInX animated'>
-          <ImageTag src={imgSrc} className="giphy-image"/>
-        </div>
-      );
-    });
-    var header;
-    if (this.state.profileImgs.length > 0){
-      header = <div></div>;
-    } else {
-      header = <h1 className='text-center'>Search for an Email. Receive gifs yak.</h1>;
-    }
-
     return (
-      <div className='container'>
-        {header}
-        <div className='row'>
-          {profileImgs}
-        </div>
+      <div className='background-image-container'>
+        <img src='img/xmas_12_days_d11_landing.jpg'>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8">
+                <img src='img/xmas_12_days_d11_header.gif'></img>
+                <img src='img/xmas_12_days_d11_header.png'></img>
+              </div>
+              <div className="col-md-4">
+                fdjaslfjdalkfjdaskldasgdas
+              </div>
+            </div>
+          </div>
+        </img>
       </div>
     );
   }

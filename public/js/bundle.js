@@ -300,32 +300,31 @@ var Home = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var profileImgs = this.state.profileImgs.map(function (imgSrc, idx) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'col-xs-6 .col-md-4 flipInX animated' },
-          _react2.default.createElement(_ImageTag2.default, { src: imgSrc, className: 'giphy-image' })
-        );
-      });
-      var header;
-      if (this.state.profileImgs.length > 0) {
-        header = _react2.default.createElement('div', null);
-      } else {
-        header = _react2.default.createElement(
-          'h1',
-          { className: 'text-center' },
-          'Search for an Email. Receive gifs yak.'
-        );
-      }
-
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        header,
+        { className: 'background-image-container' },
         _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          profileImgs
+          'img',
+          { src: 'img/xmas_12_days_d11_landing.jpg' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-8' },
+                _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.gif' }),
+                _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.png' })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-4' },
+                'fdjaslfjdalkfjdaskldasgdas'
+              )
+            )
+          )
         )
       );
     }
