@@ -33,9 +33,11 @@ class Home extends React.Component {
   }
 
   render() {
+    var divStyle = {
+      backgroundImage: 'url(img/xmas_12_days_d11_landing.jpg)' // switch this with image src.
+    };
     return (
-      <div className='background-image-container'>
-        <img src='img/xmas_12_days_d11_landing.jpg'>
+      <div className='background-image-container' style={divStyle}>
           <div className="container">
             <div className="row">
               <div className="col-md-8">
@@ -47,7 +49,6 @@ class Home extends React.Component {
               </div>
             </div>
           </div>
-        </img>
       </div>
     );
   }

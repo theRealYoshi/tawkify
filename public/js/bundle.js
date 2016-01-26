@@ -300,29 +300,28 @@ var Home = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var divStyle = {
+        backgroundImage: 'url(img/xmas_12_days_d11_landing.jpg)' // switch this with image src.
+      };
       return _react2.default.createElement(
         'div',
-        { className: 'background-image-container' },
+        { className: 'background-image-container', style: divStyle },
         _react2.default.createElement(
-          'img',
-          { src: 'img/xmas_12_days_d11_landing.jpg' },
+          'div',
+          { className: 'container' },
           _react2.default.createElement(
             'div',
-            { className: 'container' },
+            { className: 'row' },
             _react2.default.createElement(
               'div',
-              { className: 'row' },
-              _react2.default.createElement(
-                'div',
-                { className: 'col-md-8' },
-                _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.gif' }),
-                _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.png' })
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'col-md-4' },
-                'fdjaslfjdalkfjdaskldasgdas'
-              )
+              { className: 'col-md-8' },
+              _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.gif' }),
+              _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.png' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-4' },
+              'fdjaslfjdalkfjdaskldasgdas'
             )
           )
         )
