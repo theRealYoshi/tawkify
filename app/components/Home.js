@@ -12,6 +12,9 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    // updates sale price and number of available spots remaining remaining;
+    // HomeActions.findSalePrice();
+    // HomeActions.findNumRemaining();
     HomeStore.listen(this.onChange);
   }
 
@@ -28,17 +31,24 @@ class Home extends React.Component {
 
   render() {
     console.log(this.props.params.dayNum);
+    console.log(this.state.numRemaining);
+    debugger;
     var dayNum = this.props.params.dayNum;
     var soldOut = true;
     var availability;
     if (soldOut){
+      // change color based on message
       availability = "Sold Out";
     } else {
+      // include numRemaining in here
       availability = "x remaining"
     }
+
+    //switch these out with the day numbers
     var headerImageStatic = "img/xmas_12_days_d11_header.png";
     var headerImageGif = "img/xmas_12_days_d11_header.gif";
     var saleValue = "$1198";
+
     var numRemaining = "LIMITED TIME OFFER 0 REMAINING";
     var divStyle = {
       backgroundImage: 'url(img/xmas_12_days_d11_landing.jpg)',

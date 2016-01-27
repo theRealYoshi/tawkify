@@ -258,6 +258,9 @@ var Home = (function (_React$Component) {
   _createClass(Home, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      // updates sale price and number of available spots remaining remaining;
+      // HomeActions.findSalePrice();
+      // HomeActions.findNumRemaining();
       _HomeStore2.default.listen(this.onChange);
     }
   }, {
@@ -277,17 +280,24 @@ var Home = (function (_React$Component) {
     key: 'render',
     value: function render() {
       console.log(this.props.params.dayNum);
+      console.log(this.state.numRemaining);
+      debugger;
       var dayNum = this.props.params.dayNum;
       var soldOut = true;
       var availability;
       if (soldOut) {
+        // change color based on message
         availability = "Sold Out";
       } else {
+        // include numRemaining in here
         availability = "x remaining";
       }
+
+      //switch these out with the day numbers
       var headerImageStatic = "img/xmas_12_days_d11_header.png";
       var headerImageGif = "img/xmas_12_days_d11_header.gif";
       var saleValue = "$1198";
+
       var numRemaining = "LIMITED TIME OFFER 0 REMAINING";
       var divStyle = {
         backgroundImage: 'url(img/xmas_12_days_d11_landing.jpg)',
