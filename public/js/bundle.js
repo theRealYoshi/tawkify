@@ -315,13 +315,91 @@ var Home = (function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-8' },
-              _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.gif' }),
-              _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.png' })
+              _react2.default.createElement(
+                'div',
+                { className: 'header-image-overlay' },
+                _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.gif', className: 'gif-image' }),
+                _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.png', className: 'static-image' })
+              )
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-4' },
-              'fdjaslfjdalkfjdaskldasgdas'
+              _react2.default.createElement(
+                'div',
+                { className: 'options-container' },
+                _react2.default.createElement(
+                  'ul',
+                  { className: 'options-list' },
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-header' },
+                    _react2.default.createElement(
+                      'div',
+                      null,
+                      _react2.default.createElement(
+                        'h4',
+                        null,
+                        'Get 3 months for the price of 2'
+                      ),
+                      _react2.default.createElement(
+                        'h2',
+                        null,
+                        '$1198'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'LIMITED OFFER 0 REMAINING'
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item' },
+                    'Personal Matchmaker'
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item' },
+                    'Matches Guaranteed:'
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item' },
+                    'Recruiters search to your specs'
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item' },
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'All matches handpicked and personally screened'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'Creative curated date experiences'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item' },
+                    'Dating insights and guidance'
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item-pricing' },
+                    '$1198 / 3 months - saves $599'
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item-availability' },
+                    'Sold Out'
+                  )
+                )
+              )
             )
           )
         )
