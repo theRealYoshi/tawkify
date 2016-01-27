@@ -32,7 +32,6 @@ class Home extends React.Component {
   render() {
     console.log(this.props.params.dayNum);
     console.log(this.state.numRemaining);
-    debugger;
     var dayNum = this.props.params.dayNum;
     var soldOut = true;
     var availability;
