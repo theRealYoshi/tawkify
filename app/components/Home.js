@@ -3,7 +3,6 @@ import {Link} from 'react-router';
 import HomeStore from '../stores/HomeStore';
 import NavbarStore from '../stores/NavbarStore';
 import HomeActions from '../actions/HomeActions';
-import ImageTag from './ImageTag';
 import {first, without, findWhere} from 'underscore';
 
 class Home extends React.Component {
@@ -45,7 +44,9 @@ class Home extends React.Component {
     var saleValue = "$1198";
     var numRemaining = "LIMITED TIME OFFER 0 REMAINING";
     var divStyle = {
-      backgroundImage: 'url(img/xmas_12_days_d11_landing.jpg)' // switch this with image src.
+      backgroundImage: 'url(img/xmas_12_days_d11_landing.jpg)',
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat"
     };
 
 
