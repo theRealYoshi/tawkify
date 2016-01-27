@@ -12,16 +12,6 @@ class Navbar extends React.Component {
 
   componentDidMount() {
     NavbarStore.listen(this.onChange);
-
-    $(document).ajaxStart(() => {
-      NavbarActions.updateAjaxAnimation('fadeIn');
-    });
-
-    $(document).ajaxComplete(() => {
-      setTimeout(() => {
-        NavbarActions.updateAjaxAnimation('fadeOut');
-      }, 2000);
-    });
   }
 
   componentWillUnmount() {
@@ -32,20 +22,7 @@ class Navbar extends React.Component {
     this.setState(state);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-
-    let searchQuery = this.state.searchQuery.trim();
-    if (searchQuery) {
-      NavbarActions.clearGifs();
-      NavbarActions.findGif({
-        searchQuery: searchQuery,
-        history: this.props.history
-      });
-      NavbarActions.keepInput(searchQuery);
-    } else {
-      NavbarActions.reRenderPage();
-    }
+  handleSubmit() {
   }
 
   handleReRender(){
@@ -53,11 +30,6 @@ class Navbar extends React.Component {
   }
 
   render() {
-
-    var inputForm = 'navbar-form navbar-left animated';
-    if (this.state.shake){
-      inputForm += ' shake';
-    }
 
     return (
       <nav className='navbar navbar-default navbar-static-top'>
@@ -76,9 +48,15 @@ class Navbar extends React.Component {
             </ul>
             <ul className='nav navbar-nav navbar-right'>
               <li><Link to='/phone' className='screening-text'>1(888)494-7280</Link></li>
-                <Link to='/screening'>
-                  <img src="/img/screening-logo.png" className="screening-logo"></img>
-                </Link>
+              <li>
+                <div onClick={this.handleSubmit} className="free-screening-list-item">
+                  <div className="free-screening">
+                    <span className="glyphicon glyphicon-earphone"/>
+                    <div className="free-screening-top">chat with a love expert</div>
+                    <div className="free-screening-bottom">CLICK HERE FOR A FREE SCREENING</div>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>

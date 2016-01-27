@@ -50,22 +50,56 @@ class Home extends React.Component {
                 <div className='options-container'>
                   <ul className='options-list'>
                     <li className='options-list-header'>
-                      <div>
-                        <h4>Get 3 months for the price of 2</h4>
-                        <h2>$1198</h2>
-                        <p>LIMITED OFFER 0 REMAINING</p>
+                      <div className='options-list-header-container'>
+                        <div className="header-description">GET 3 MONTHS FOR THE PRICE OF 2</div>
+                        <span className="glyphicon glyphicon-info-sign"/>
+                        <div className="header-value">
+                          <div className="value">$1198</div>
+                        </div>
+                        <div className="header-limited">LIMITED OFFER 0 REMAINING</div>
                       </div>
                     </li>
-                    <li className="options-list-item">Personal Matchmaker</li>
-                    <li className="options-list-item">Matches Guaranteed:</li>
-                    <li className="options-list-item">Recruiters search to your specs</li>
                     <li className="options-list-item">
-                      <p>All matches handpicked and personally screened</p>
-                      <p>Creative curated date experiences</p>
+                      <div className="options-list-item-container">
+                        <p>Personal Matchmaker</p>
+                        <span className="glyphicon glyphicon-chevron-right"/>
+                      </div>
                     </li>
-                    <li className="options-list-item">Dating insights and guidance</li>
-                    <li className="options-list-item-pricing">$1198 / 3 months - saves $599</li>
-                    <li className="options-list-item-availability">Sold Out</li>
+                    <li className="options-list-item">
+                      <div className="options-list-item-container">
+                        <p>Matches Guaranteed:</p>
+                        <span className="glyphicon glyphicon-chevron-right"/>
+                      </div>
+                    </li>
+                    <li className="options-list-item">
+                      <div className="options-list-item-container">
+                        <p>Recruiters search to your specs</p>
+                        <span className="glyphicon glyphicon-chevron-right"/>
+                      </div>
+                    </li>
+                    <li className="options-list-item">
+                      <div className="options-list-item-container">
+                        <p>All matches handpicked and personally screened</p>
+                        <p>Creative curated date experiences</p>
+                        <span className="glyphicon glyphicon-chevron-right"/>
+                      </div>
+                    </li>
+                    <li className="options-list-item">
+                      <div className="options-list-item-container">
+                        <p>Dating insights and guidance</p>
+                        <span className="glyphicon glyphicon-chevron-right"/>
+                      </div>
+                    </li>
+                    <li className="options-list-item-pricing">
+                      <div className="options-list-item-container">
+                        <p>$1198 / 3 months - saves $599</p>
+                      </div>
+                    </li>
+                    <li className="options-list-item-availability">
+                      <div className="options-list-item-container">
+                        <p>Sold Out</p>
+                      </div>
+                    </li>
                   </ul>
                 </div>
               </div>

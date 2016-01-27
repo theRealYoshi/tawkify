@@ -336,20 +336,25 @@ var Home = (function (_React$Component) {
                     { className: 'options-list-header' },
                     _react2.default.createElement(
                       'div',
-                      null,
+                      { className: 'options-list-header-container' },
                       _react2.default.createElement(
-                        'h4',
-                        null,
-                        'Get 3 months for the price of 2'
+                        'div',
+                        { className: 'header-description' },
+                        'GET 3 MONTHS FOR THE PRICE OF 2'
+                      ),
+                      _react2.default.createElement('span', { className: 'glyphicon glyphicon-info-sign' }),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'header-value' },
+                        _react2.default.createElement(
+                          'div',
+                          { className: 'value' },
+                          '$1198'
+                        )
                       ),
                       _react2.default.createElement(
-                        'h2',
-                        null,
-                        '$1198'
-                      ),
-                      _react2.default.createElement(
-                        'p',
-                        null,
+                        'div',
+                        { className: 'header-limited' },
                         'LIMITED OFFER 0 REMAINING'
                       )
                     )
@@ -357,46 +362,103 @@ var Home = (function (_React$Component) {
                   _react2.default.createElement(
                     'li',
                     { className: 'options-list-item' },
-                    'Personal Matchmaker'
-                  ),
-                  _react2.default.createElement(
-                    'li',
-                    { className: 'options-list-item' },
-                    'Matches Guaranteed:'
-                  ),
-                  _react2.default.createElement(
-                    'li',
-                    { className: 'options-list-item' },
-                    'Recruiters search to your specs'
-                  ),
-                  _react2.default.createElement(
-                    'li',
-                    { className: 'options-list-item' },
                     _react2.default.createElement(
-                      'p',
-                      null,
-                      'All matches handpicked and personally screened'
-                    ),
-                    _react2.default.createElement(
-                      'p',
-                      null,
-                      'Creative curated date experiences'
+                      'div',
+                      { className: 'options-list-item-container' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Personal Matchmaker'
+                      ),
+                      _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
                     )
                   ),
                   _react2.default.createElement(
                     'li',
                     { className: 'options-list-item' },
-                    'Dating insights and guidance'
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'options-list-item-container' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Matches Guaranteed:'
+                      ),
+                      _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'options-list-item-container' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Recruiters search to your specs'
+                      ),
+                      _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'options-list-item-container' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'All matches handpicked and personally screened'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Creative curated date experiences'
+                      ),
+                      _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'li',
+                    { className: 'options-list-item' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'options-list-item-container' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Dating insights and guidance'
+                      ),
+                      _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+                    )
                   ),
                   _react2.default.createElement(
                     'li',
                     { className: 'options-list-item-pricing' },
-                    '$1198 / 3 months - saves $599'
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'options-list-item-container' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        '$1198 / 3 months - saves $599'
+                      )
+                    )
                   ),
                   _react2.default.createElement(
                     'li',
                     { className: 'options-list-item-availability' },
-                    'Sold Out'
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'options-list-item-container' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Sold Out'
+                      )
+                    )
                   )
                 )
               )
@@ -519,16 +581,6 @@ var Navbar = (function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       _NavbarStore2.default.listen(this.onChange);
-
-      $(document).ajaxStart(function () {
-        _NavbarActions2.default.updateAjaxAnimation('fadeIn');
-      });
-
-      $(document).ajaxComplete(function () {
-        setTimeout(function () {
-          _NavbarActions2.default.updateAjaxAnimation('fadeOut');
-        }, 2000);
-      });
     }
   }, {
     key: 'componentWillUnmount',
@@ -542,21 +594,7 @@ var Navbar = (function (_React$Component) {
     }
   }, {
     key: 'handleSubmit',
-    value: function handleSubmit(event) {
-      event.preventDefault();
-
-      var searchQuery = this.state.searchQuery.trim();
-      if (searchQuery) {
-        _NavbarActions2.default.clearGifs();
-        _NavbarActions2.default.findGif({
-          searchQuery: searchQuery,
-          history: this.props.history
-        });
-        _NavbarActions2.default.keepInput(searchQuery);
-      } else {
-        _NavbarActions2.default.reRenderPage();
-      }
-    }
+    value: function handleSubmit() {}
   }, {
     key: 'handleReRender',
     value: function handleReRender() {
@@ -565,11 +603,6 @@ var Navbar = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-
-      var inputForm = 'navbar-form navbar-left animated';
-      if (this.state.shake) {
-        inputForm += ' shake';
-      }
 
       return _react2.default.createElement(
         'nav',
@@ -642,9 +675,27 @@ var Navbar = (function (_React$Component) {
                 )
               ),
               _react2.default.createElement(
-                _reactRouter.Link,
-                { to: '/screening' },
-                _react2.default.createElement('img', { src: '/img/screening-logo.png', className: 'screening-logo' })
+                'li',
+                null,
+                _react2.default.createElement(
+                  'div',
+                  { onClick: this.handleSubmit, className: 'free-screening-list-item' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'free-screening' },
+                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-earphone' }),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'free-screening-top' },
+                      'chat with a love expert'
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'free-screening-bottom' },
+                      'CLICK HERE FOR A FREE SCREENING'
+                    )
+                  )
+                )
               )
             )
           )
