@@ -10,7 +10,6 @@ class NavbarActions {
       'getGiphyFail',
       'reRenderPage',
       'clearGifs',
-      'removeShake',
       'keepInput'
     );
   }
