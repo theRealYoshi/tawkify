@@ -33,17 +33,30 @@ class Home extends React.Component {
   }
 
   render() {
+    var soldOut = true;
+    var availability;
+    if (soldOut){
+      availability = "Sold Out";
+    } else {
+      availability = "x remaining"
+    }
+    var headerImageStatic = "img/xmas_12_days_d11_header.png";
+    var headerImageGif = "img/xmas_12_days_d11_header.gif";
+    var saleValue = "$1198";
+    var numRemaining = "LIMITED TIME OFFER 0 REMAINING";
     var divStyle = {
       backgroundImage: 'url(img/xmas_12_days_d11_landing.jpg)' // switch this with image src.
     };
+
+
     return (
       <div className='background-image-container' style={divStyle}>
           <div className="container">
             <div className="row">
               <div className="col-md-8" >
                 <div className="header-image-overlay">
-                  <img src='img/xmas_12_days_d11_header.gif' className="gif-image"></img>
-                  <img src='img/xmas_12_days_d11_header.png' className="static-image"></img>
+                  <img src={headerImageGif} className="gif-image"></img>
+                  <img src={headerImageStatic} className="static-image"></img>
                 </div>
               </div>
               <div className="col-md-4">
@@ -54,9 +67,9 @@ class Home extends React.Component {
                         <div className="header-description">GET 3 MONTHS FOR THE PRICE OF 2</div>
                         <span className="glyphicon glyphicon-info-sign"/>
                         <div className="header-value">
-                          <div className="value">$1198</div>
+                          <div className="value">{saleValue}</div>
                         </div>
-                        <div className="header-limited">LIMITED OFFER 0 REMAINING</div>
+                        <div className="header-limited">{numRemaining}</div>
                       </div>
                     </li>
                     <li className="options-list-item">
@@ -97,7 +110,7 @@ class Home extends React.Component {
                     </li>
                     <li className="options-list-item-availability">
                       <div className="options-list-item-container">
-                        <p>Sold Out</p>
+                        <p>{availability}</p>
                       </div>
                     </li>
                   </ul>

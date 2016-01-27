@@ -300,9 +300,21 @@ var Home = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var soldOut = true;
+      var availability;
+      if (soldOut) {
+        availability = "Sold Out";
+      } else {
+        availability = "x remaining";
+      }
+      var headerImageStatic = "img/xmas_12_days_d11_header.png";
+      var headerImageGif = "img/xmas_12_days_d11_header.gif";
+      var saleValue = "$1198";
+      var numRemaining = "LIMITED TIME OFFER 0 REMAINING";
       var divStyle = {
         backgroundImage: 'url(img/xmas_12_days_d11_landing.jpg)' // switch this with image src.
       };
+
       return _react2.default.createElement(
         'div',
         { className: 'background-image-container', style: divStyle },
@@ -318,8 +330,8 @@ var Home = (function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'header-image-overlay' },
-                _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.gif', className: 'gif-image' }),
-                _react2.default.createElement('img', { src: 'img/xmas_12_days_d11_header.png', className: 'static-image' })
+                _react2.default.createElement('img', { src: headerImageGif, className: 'gif-image' }),
+                _react2.default.createElement('img', { src: headerImageStatic, className: 'static-image' })
               )
             ),
             _react2.default.createElement(
@@ -349,13 +361,13 @@ var Home = (function (_React$Component) {
                         _react2.default.createElement(
                           'div',
                           { className: 'value' },
-                          '$1198'
+                          saleValue
                         )
                       ),
                       _react2.default.createElement(
                         'div',
                         { className: 'header-limited' },
-                        'LIMITED OFFER 0 REMAINING'
+                        numRemaining
                       )
                     )
                   ),
@@ -456,7 +468,7 @@ var Home = (function (_React$Component) {
                       _react2.default.createElement(
                         'p',
                         null,
-                        'Sold Out'
+                        availability
                       )
                     )
                   )
