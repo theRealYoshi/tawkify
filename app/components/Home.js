@@ -1,37 +1,34 @@
 import React from 'react';
 import {Link} from 'react-router';
 import HomeStore from '../stores/HomeStore';
-import NavbarStore from '../stores/NavbarStore';
 import HomeActions from '../actions/HomeActions';
-import {first, without, findWhere} from 'underscore';
 
 class Home extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = NavbarStore.getState();
+    this.state = HomeStore.getState();
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    NavbarStore.listen(this.onChange);
+    HomeStore.listen(this.onChange);
   }
 
   componentWillUnmount() {
-    NavbarStore.unlisten(this.onChange);
+    HomeStore.unlisten(this.onChange);
   }
 
   onChange(state) {
     this.setState(state);
   }
 
-  handleClick(character) {
-    var winner = character.characterId;
-    var loser = first(without(this.state.characters, findWhere(this.state.characters, { characterId: winner }))).characterId;
-    HomeActions.vote(winner, loser);
+  handleClick() {
   }
 
   render() {
+    console.log(this.props.params.dayNum);
+    var dayNum = this.props.params.dayNum;
     var soldOut = true;
     var availability;
     if (soldOut){

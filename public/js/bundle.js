@@ -1,6 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -13,18 +15,48 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var HomeActions = function HomeActions() {
-  _classCallCheck(this, HomeActions);
+var HomeActions = (function () {
+  function HomeActions() {
+    _classCallCheck(this, HomeActions);
 
-  this.generateActions();
-};
+    this.generateActions('daysSuccess', 'daysFail', 'savingsLookupSuccess', 'savingsLookupFail', 'getNumRemainingSuccess', 'getNumRemainingFail', 'getSalePriceSuccess', 'getSalePriceFail');
+  }
+
+  _createClass(HomeActions, [{
+    key: 'findSalePrice',
+    value: function findSalePrice() {
+      var _this = this;
+
+      $.ajax({
+        url: '/api/tawkify/saleprice'
+      }).done(function (data) {
+        _this.actions.getSalePriceSuccess(data);
+      }).fail(function (data) {
+        _this.actions.getSalePriceFail(data);
+      });
+    }
+  }, {
+    key: 'findNumRemaining',
+    value: function findNumRemaining() {
+      var _this2 = this;
+
+      $.ajax({
+        url: '/api/tawkify/numremaining'
+      }).done(function (data) {
+        _this2.actions.getNumRemainingSuccess(data);
+      }).fail(function (data) {
+        _this2.actions.getNumRemainingFail(data);
+      });
+    }
+  }]);
+
+  return HomeActions;
+})();
 
 exports.default = _alt2.default.createActions(HomeActions);
 
 },{"../alt":3}],2:[function(require,module,exports){
 'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -40,36 +72,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var NavbarActions = (function () {
-  function NavbarActions() {
-    _classCallCheck(this, NavbarActions);
+var NavbarActions = function NavbarActions() {
+  _classCallCheck(this, NavbarActions);
 
-    this.generateActions('updateSearchQuery', 'updateAjaxAnimation', 'getGiphySuccess', 'getGiphyFail', 'reRenderPage', 'clearGifs', 'removeShake', 'keepInput');
-  }
-  //find images based off Giphy or Redis
-
-  _createClass(NavbarActions, [{
-    key: 'findGif',
-    value: function findGif(payload) {
-      var _this = this;
-
-      $.ajax({
-        url: '/api/gifs/search',
-        data: { email: payload.searchQuery }
-      }).done(function (data) {
-        (0, _underscore.assign)(payload, data);
-        _this.actions.getGiphySuccess(payload);
-        _this.actions.keepInput(email);
-      }).fail(function (data) {
-        (0, _underscore.assign)(payload, data);
-        _this.actions.getGiphyFail(payload);
-        _this.actions.removeShake();
-      });
-    }
-  }]);
-
-  return NavbarActions;
-})();
+  this.generateActions();
+};
 
 exports.default = _alt2.default.createActions(NavbarActions);
 
@@ -223,15 +230,9 @@ var _HomeStore = require('../stores/HomeStore');
 
 var _HomeStore2 = _interopRequireDefault(_HomeStore);
 
-var _NavbarStore = require('../stores/NavbarStore');
-
-var _NavbarStore2 = _interopRequireDefault(_NavbarStore);
-
 var _HomeActions = require('../actions/HomeActions');
 
 var _HomeActions2 = _interopRequireDefault(_HomeActions);
-
-var _underscore = require('underscore');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -249,7 +250,7 @@ var Home = (function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Home).call(this, props));
 
-    _this.state = _NavbarStore2.default.getState();
+    _this.state = _HomeStore2.default.getState();
     _this.onChange = _this.onChange.bind(_this);
     return _this;
   }
@@ -257,12 +258,12 @@ var Home = (function (_React$Component) {
   _createClass(Home, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      _NavbarStore2.default.listen(this.onChange);
+      _HomeStore2.default.listen(this.onChange);
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      _NavbarStore2.default.unlisten(this.onChange);
+      _HomeStore2.default.unlisten(this.onChange);
     }
   }, {
     key: 'onChange',
@@ -271,14 +272,12 @@ var Home = (function (_React$Component) {
     }
   }, {
     key: 'handleClick',
-    value: function handleClick(character) {
-      var winner = character.characterId;
-      var loser = (0, _underscore.first)((0, _underscore.without)(this.state.characters, (0, _underscore.findWhere)(this.state.characters, { characterId: winner }))).characterId;
-      _HomeActions2.default.vote(winner, loser);
-    }
+    value: function handleClick() {}
   }, {
     key: 'render',
     value: function render() {
+      console.log(this.props.params.dayNum);
+      var dayNum = this.props.params.dayNum;
       var soldOut = true;
       var availability;
       if (soldOut) {
@@ -467,7 +466,7 @@ var Home = (function (_React$Component) {
 
 exports.default = Home;
 
-},{"../actions/HomeActions":1,"../stores/HomeStore":10,"../stores/NavbarStore":11,"react":"react","react-router":"react-router","underscore":"underscore"}],7:[function(require,module,exports){
+},{"../actions/HomeActions":1,"../stores/HomeStore":10,"react":"react","react-router":"react-router"}],7:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -702,11 +701,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _react2.default.createElement(
   _reactRouter.Route,
   { component: _App2.default },
-  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Home2.default })
+  _react2.default.createElement(_reactRouter.Route, { path: '/:dayNum', component: _Home2.default })
 );
 
 },{"./components/App":4,"./components/Home":6,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -724,18 +725,51 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var HomeStore = function HomeStore() {
-  _classCallCheck(this, HomeStore);
+var HomeStore = (function () {
+  function HomeStore() {
+    _classCallCheck(this, HomeStore);
 
-  this.bindActions(_HomeActions2.default);
-};
+    this.bindActions(_HomeActions2.default);
+    this.days = [];
+    this.numRemaining = null;
+    this.salePrice = null;
+  }
+
+  _createClass(HomeStore, [{
+    key: 'onDaysSuccess',
+    value: function onDaysSuccess() {}
+  }, {
+    key: 'onDaysFail',
+    value: function onDaysFail() {}
+  }, {
+    key: 'onSalesPriceSuccess',
+    value: function onSalesPriceSuccess(data) {
+      this.salePrice = data;
+    }
+  }, {
+    key: 'onSalesPriceFail',
+    value: function onSalesPriceFail(data) {
+      // error message
+    }
+  }, {
+    key: 'onNumRemainingSuccess',
+    value: function onNumRemainingSuccess(data) {
+      this.numRemaining = data;
+    }
+  }, {
+    key: 'onNumRemainingFail',
+    value: function onNumRemainingFail() {
+      // error message
+    }
+  }]);
+
+  return HomeStore;
+})();
 
 exports.default = _alt2.default.createStore(HomeStore);
 
 },{"../actions/HomeActions":1,"../alt":3}],11:[function(require,module,exports){
 'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -753,74 +787,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var NavbarStore = (function () {
-  function NavbarStore() {
-    _classCallCheck(this, NavbarStore);
+var NavbarStore = function NavbarStore() {
+  _classCallCheck(this, NavbarStore);
 
-    this.bindActions(_NavbarActions2.default);
-    this.profileImgs = [];
-    this.searchQuery = '';
-    this.ajaxAnimationClass = '';
-    this.shake = false;
-    this.emails = [];
-  }
-
-  _createClass(NavbarStore, [{
-    key: 'onGetGiphySuccess',
-    value: function onGetGiphySuccess(payload) {
-      this.profileImgs = payload.data;
-    }
-  }, {
-    key: 'onGetGiphyFail',
-    value: function onGetGiphyFail(payload) {
-      this.shake = true;
-      toastr.error(payload.responseText);
-    }
-  }, {
-    key: 'onRemoveShake',
-    value: function onRemoveShake() {
-      var _this = this;
-
-      setTimeout(function () {
-        _this.shake = false;
-      }, 1000);
-    }
-  }, {
-    key: 'onKeepInput',
-    value: function onKeepInput(email) {
-      var emailString = window.localStorage.getItem('allemails');
-      if (emailString) {
-        window.localStorage.setItem('allemails', emailString + "," + email);
-      } else {
-        window.localStorage.setItem('allemails', email);
-      }
-      //this.emails.push(email);
-    }
-  }, {
-    key: 'onUpdateAjaxAnimation',
-    value: function onUpdateAjaxAnimation(className) {
-      this.ajaxAnimationClass = className; //fadein or fadeout
-    }
-  }, {
-    key: 'onUpdateSearchQuery',
-    value: function onUpdateSearchQuery(event) {
-      this.searchQuery = event.target.value;
-    }
-  }, {
-    key: 'onReRenderPage',
-    value: function onReRenderPage() {
-      this.profileImgs = [];
-      this.searchQuery = "";
-    }
-  }, {
-    key: 'onClearGifs',
-    value: function onClearGifs() {
-      this.profileImgs = [];
-    }
-  }]);
-
-  return NavbarStore;
-})();
+  this.bindActions(_NavbarActions2.default);
+};
 
 exports.default = _alt2.default.createStore(NavbarStore);
 

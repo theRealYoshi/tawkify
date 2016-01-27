@@ -17,8 +17,15 @@ var Router = require('react-router');
 var routes = require('./app/routes');
 var config = require('./config');
 
+var mongoose = require('mongoose');
+var Day = require('./models/day');
 
 var app = express();
+
+mongoose.connect(config.database);
+mongoose.connection.on('error', function() {
+  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
+});
 
 app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
@@ -27,42 +34,39 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-/**
- * GET /api/gifs/search
- * assigns random search tag to email caches result
- */
-app.get('/api/gifs/search', function(req, res, next) {
-  // var emailLookup = new RegExp(req.query.email);
-  // if (!validateEmail(emailLookup)){
-  //   return res.status(404).send("Please enter a valid email address");
-  // }
-  // // error handlers
-  // // use try block
-  // redis.exists(emailLookup, function(err, reply){
-  //   if (reply === 1){
-  //     redis.lrange(emailLookup, 0, -1, function(err, reply){
-  //       res.send({data: reply});
-  //     })
-  //   } else {
-  //     var celebs = ["jack-mcbrayer", "morgan+freeman", "ryan+gosling",
-  //                   "bill+murray", "olivia+wilde", "minka+kelly",
-  //                   "leonardo+dicaprio", "paul+rudd","jennifer+lawrence"];
-  //     var celeb = celebs[Math.floor(Math.random()*celebs.length)];
-  //     var giphyUrl = "http://api.giphy.com/v1/gifs/search?q=" + celeb + "&api_key=dc6zaTOxFJmzC&limit=10";
-  //     request.get(giphyUrl, function(error,response, body){
-  //       if (!error && response.statusCode == 200) {
-  //         redis.rpush(parseGiphyData(emailLookup, body)); // stores giphy data object
-  //         redis.expire(emailLookup, 600); // expires after one minute
-  //         redis.lrange(emailLookup, 0, -1, function(err, reply){
-  //           res.send({data: reply});
-  //         })
-  //       } else {
-  //         res.status(404).send("Giphy failed to provide valid request");
-  //       }
-  //     })
-  //   }
-  // })
+app.get('/api/days/', function(req, res, next) {
+  var dayId = req.query.dayId;
+  Day.findOne({ dayId: dayId }, function(err, day) {
+    if (err) return next(err);
+
+    if (day) {
+      return res.status(409).send({ message: character.name + ' is already in the database.' });
+    }
+
+    callback(err, dayId);
+  });
+
+  var day = new Day({
+             dayId: dayId,
+             dayNum: dayNum,
+             staticImageUrl: staticImageUrl,
+             gifImageUrl: gifImageUrl,
+             backgroundImageUrl: backgroundImageUrl
+           });
+
+   day.save(function(err) {
+     if (err) return next(err);
+     res.send({ message: dayNum + ' has been added successfully!' });
+   });
 });
+
+app.get('/api/tawkify/saleprice', function(req, res, next){
+  // connect with tawkify server to see how much the sale price is. 
+})
+app.get('/api/tawkify/numremaining', function(req, res, next){
+  // connect with tawkify server to see how many are remaining
+  // return data back to actions
+})
 
 
 
